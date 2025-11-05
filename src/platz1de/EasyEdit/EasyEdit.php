@@ -69,6 +69,11 @@ class EasyEdit extends PluginBase
 
 	public function onEnable(): void
 	{
+		// Load compatibility stub for NetherGamesMC
+		if (!class_exists(\pocketmine\data\bedrock\block\BlockStateData::class)) {
+			require_once __DIR__ . '/compat/BlockStateData.php';
+		}
+
 		self::$instance = $this;
 		self::setEnvironment(new MainThreadHandler());
 

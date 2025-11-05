@@ -51,7 +51,7 @@ class PacketUtils
 	 */
 	public static function resendBlock(Vector3 $vector, World $world, Player $player): void
 	{
-		foreach ($world->createBlockUpdatePackets([$vector]) as $packet) {
+		foreach ($world->createBlockUpdatePackets(TypeConverter::getInstance(), [$vector]) as $packet) {
 			$player->getNetworkSession()->sendDataPacket($packet);
 		}
 	}
