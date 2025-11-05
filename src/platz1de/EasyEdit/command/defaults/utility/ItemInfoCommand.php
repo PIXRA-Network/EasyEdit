@@ -8,14 +8,15 @@ use platz1de\EasyEdit\command\flags\CommandFlag;
 use platz1de\EasyEdit\command\flags\CommandFlagCollection;
 use platz1de\EasyEdit\command\KnownPermissions;
 use platz1de\EasyEdit\session\Session;
-use pocketmine\item\VanillaItems;
+use platz1de\EasyEdit\utils\ItemInfoUtil;
 
-class WandCommand extends EasyEditCommand
+class ItemInfoCommand extends EasyEditCommand
 {
 	public function __construct()
 	{
-		parent::__construct("/wand", [KnownPermissions::PERMISSION_UTIL]);
+		parent::__construct("/iteminfo", [KnownPermissions::PERMISSION_UTIL]);
 	}
+
 
 	/**
 	 * @param Session               $session
@@ -23,7 +24,8 @@ class WandCommand extends EasyEditCommand
 	 */
 	public function process(Session $session, CommandFlagCollection $flags): void
 	{
-		$session->asPlayer()->getInventory()->setItem($session->asPlayer()->getInventory()->getHeldItemIndex(), VanillaItems::WOODEN_AXE()); //some people prefer a command I guess
+		$itemInHand = $session->asPlayer()->getInventory()->getItemInHand();
+		$session->sendMessage("item-info", ItemInfoUtil::createItemInfo($itemInHand));
 	}
 
 	/**

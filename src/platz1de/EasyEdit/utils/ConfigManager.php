@@ -29,6 +29,7 @@ class ConfigManager
 	private static bool $allowOtherHistory;
 	private static int $pathfindingMax;
 	private static int $fillDistance;
+	private static int $historyDepth;
 	private static bool $sendDebug;
 	private static bool $downloadData;
 	private static bool $cacheData;
@@ -48,6 +49,7 @@ class ConfigManager
 		self::$toolCooldown = self::mustGetFloat($config, "tool-cooldown", 0.5);
 
 		self::$allowOtherHistory = self::mustGetBool($config, "allow-history-other", true);
+		self::$historyDepth = self::mustGetInt($config, "history-depth", -1);
 
 		self::$pathfindingMax = self::mustGetInt($config, "pathfinding-max", 1000000);
 		self::$fillDistance = self::mustGetInt($config, "fill-distance", 200);
@@ -175,6 +177,11 @@ class ConfigManager
 		return self::$fillDistance;
 	}
 
+	public static function getHistoryDepth(): int
+	{
+		return self::$historyDepth;
+	}
+
 	/**
 	 * @return bool
 	 */
@@ -251,9 +258,9 @@ class ConfigManager
 		LegacyBlockIdConvertor::load();
 		BedrockStatePreprocessor::load();
 		BlockTagManager::load();
+		ItemConvertor::load();
 		BlockStateConvertor::load();
 		BlockRotationManipulator::load();
-		ItemConvertor::load();
 		TileConvertor::load(RepoManager::getVersion());
 		HeightMapCache::loadIgnore(self::$terrainIgnored);
 	}

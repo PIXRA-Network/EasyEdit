@@ -1,6 +1,6 @@
 #Japanese language file
-#Author: yuko fuyutsuki
-#Last updated at: 2022-05-01 (OUTDATED)
+#Author: yuko fuyutsuki, SkyLake
+#Last updated at: 2025-10-10
 
 #If you want to include double quotes (") in your messages please escape them with a backslash (\")
 
@@ -10,33 +10,33 @@ prefix: "§l§aEasy§bEdit §r> "
 selected-pos1: "始点を指定しました: {x} {y} {z}"
 selected-pos2: "終点を指定しました: {x} {y} {z}"
 
-deselected: "Deselected the current selection"
+deselected: "領域の選択を解除しました"
 
-no-selection: "まだ項目を選択していません"
+no-selection: "まだ領域を選択していません"
 no-clipboard: "まだクリップボードに何もコピーしていません"
 
 #Args: {given} {expected}
-wrong-selection: "選択した項目は {given} 型ですが、 {expected} が必要です"
+wrong-selection: "選択した領域は {given} 型ですが、 {expected} が必要です"
 
 no-history: "元に戻すものがありません"
 no-future: "やり直すものがありません"
 
 no-task: "現在タスクは実行されていません"
 task-cancelled: "現在実行中のタスクはキャンセルされました"
-task-cancelled-self: "Your task was cancelled"
+task-cancelled-self: "タスクがキャンセルされました"
 
 #Args: {usage}
 wrong-usage: "コマンドの使用方法が間違っています:\n{usage}"
 
 #Args: {usage} {flag}
-unknown-flag: "Unknown flag {flag}\n{usage}"
+unknown-flag: "コマンドフラグの使用方法が間違っています {flag}:\n{usage}"
 
 #Args: {commands} {start} {end} {total}
 command-list: "コマンド一覧 ( {total} つのうち {start} から {end} を表示):\n{commands}"
 
 #Args: {message}
 task-crash: "§cタスクがクラッシュしました。開発者に報告してください！\n{message}"
-pattern-invalid: "§cThe pattern you entered is invalid:\n{message}"
+pattern-invalid: "§cパターンが無効です:\n{message}"
 
 #Args: {time} {changed}
 blocks-set: "{changed} ブロックを {time} 秒で設置しました"
@@ -55,11 +55,11 @@ schematic-created: "{changed} ブロックを {time} 秒で \"{name}\" という
 #Args: {task} {queue} {status} {progress} {storage} {mem_current} {mem_max}
 thread-stats: "Editスレッドの状況:\n状況: {status}\n現在実行中のタスク: {task}\n進捗: {progress}\n待機中のタスク: {queue}\n保存された項目: {storage}\nスレッドのメモリ使用量: {mem_current}MB (最大: {mem_max}MB)"
 
-benchmark-start: "Started benchmark, this can take a few minutes..."
+benchmark-start: "ベンチマークを開始しました、これには最大数分かかる場合があります..."
 benchmark-running: "既に実行中のベンチマークがあります"
 
 #Args: {done} {total}
-benchmark-progress: "Benchmark progress: {done}/{total}"
+benchmark-progress: "ベンチマーク進行状況: {done}/{total}"
 
 #Args: {tps_avg} {tps_min} {load_avg} {load_max} {tasks} {time} {results}
 benchmark-finished: "あなたのベンチマークのスコア:\n平均TPS: {tps_avg} ({load_avg}%)\n最小TPS: {tps_min} ({load_max}%)\n{tasks} つのタスクを {time} 秒で実行:\n{results}"
@@ -68,7 +68,10 @@ benchmark-finished: "あなたのベンチマークのスコア:\n平均TPS: {tp
 benchmark-result: "#{task}: {name} - {blocks} を {time} 秒で処理"
 
 #Args: {state} {id} {meta} {name} {x} {y} {z} {java_state}
-block-info: "{name} ({id}:{meta}) {x} {y} {z}\nブロックステート: {state}\nJava state: {java_state}"
+block-info: "{name} ({id}:{meta}) {x} {y} {z}\nブロックステート: {state}\nJava ステート: {java_state}"
+
+#Args: {count} {name} {id} {meta} {nbt} {java_nbt}
+item-info: "{count}x {name}§r ({id}:{meta})\nアイテムデータ: {nbt}\nJava データ: {java_nbt}"
 
 #Args: {schematic} {known}
 unknown-schematic: "不明なschematic: \"{schematic}\"\n既知のschematic: {known}"
@@ -80,14 +83,14 @@ command-pos1-description: "始点を指定する"
 command-pos1-usage: "//pos1 [x] [y] [z]"
 command-pos2-description: "終点を指定する"
 command-pos2-usage: "//pos2 [x] [y] [z]"
-command-deselect-description: "Deselect the current selection"
+command-deselect-description: "領域の選択を解除する"
 command-deselect-usage: "//deselect"
 command-extend-description: "選択した領域を拡張する"
 command-extend-usage:
   - "//extend [拡張する方角] [拡張ブロック数]"
-  - "//extend [拡張ブロック数] - 今向いている方角に指定したブロック数領域を拡張する"
-  - "//extend vertical - 垂直方向に領域を最大限拡張する"
-  - "//extend --min <x>,<y>,<z> --max <x>,<y>,<z> - Modify the selected area by the given vectors"
+  - "//extend [拡張ブロック数] - 今向いている方角に指定したブロック数選択した領域を拡張する"
+  - "//extend vertical - 垂直方向に選択した領域を最大限拡張する"
+  - "//extend --min <x>,<y>,<z> --max <x>,<y>,<z> - 指定したベクトル分、選択した領域を拡張する"
 command-set-description: "選択した領域にブロックを設置する"
 command-set-usage: "//set <パターン>"
 command-replace-description: "選択した領域のブロックを置換する"
@@ -109,20 +112,20 @@ command-sides-usage: "//sides [パターン]"
 command-move-description: "選択した領域を移動する"
 command-move-usage:
   - "//move [移動する方角] [移動ブロック数]"
-  - "//move [移動ブロック数] - 今向いている方角に指定したブロック数領域を移動する"
-  - "//move -v <x>,<y>,<z> - Move the selected area by the given vector"
+  - "//move [移動ブロック数] - 今向いている方角に指定したブロック数選択した領域を移動する"
+  - "//move -v <x>,<y>,<z> - 指定したベクトル分選択した領域を移動する"
 command-stack-description: "選択した領域にブロックを積み重ねる"
 command-stack-usage:
   - "//stack [積み重ねる方角] [積み重ねるブロック数]"
-  - "//stack [積み重ねるブロック数] - 今向いている方角に指定したブロック数領域を積み重ねる"
+  - "//stack [積み重ねるブロック数] - 今向いている方角に指定したブロック数選択した領域を積み重ねる"
 command-istack-description: "選択した領域を既存の地形を上書きせずに積み重ねる"
 command-istack-usage:
   - "//istack [積み重ねる方角] [積み重ねるブロック数]"
-  - "//istack [積み重ねるブロック数] - 今向いている方角に指定したブロック数領域を積み重ねる"
+  - "//istack [積み重ねるブロック数] - 今向いている方角に指定したブロック数選択した領域を積み重ねる"
 command-count-description: "選択した領域のブロックをカウントする"
 command-count-usage:
   - "//count"
-  - "//count -d - Count blocks and show detailed block state information"
+  - "//count -d - ブロックの詳細なステートを表示する"
   - "//count [半径] - 指定した半径のブロックをカウントする"
 command-extinguish-description: "選択した領域の消火をする"
 command-extinguish-usage:
@@ -152,11 +155,11 @@ command-cut-usage:
   - "//cut -c - 選択した領域の中心からの相対座標でコピーする"
 command-paste-description: "クリップボードから貼り付ける"
 command-paste-usage: "//paste"
-command-insert-description: "クリップボードに挿入する"
+command-insert-description: "現在の地形にクリップボードの地形を挿入する"
 command-insert-usage: "//insert"
-command-merge-description: "Merge current terrain with the clipboard"
+command-merge-description: "現在の地形をクリップボードの地形と合体する"
 command-merge-usage: "//merge"
-command-rpaste-description: "Replace current terrain with the clipboard"
+command-rpaste-description: "現在の地形をクリップボードの地形に置き換える"
 command-rpaste-usage: "//rpaste"
 command-rotate-description: "クリップボードの領域を回転する"
 command-rotate-usage: "//rotate"
@@ -180,10 +183,10 @@ command-hcylinder-description: "中空の円柱を生成します"
 command-hcylinder-usage: "//hcylinder <半径> <高さ> <パターン> <厚さ>"
 command-noise-description: "シンプルノイズを生成します"
 command-noise-usage: "//noise"
-command-cube-description: "Generate a cube"
-command-cube-usage: "//cube <size> <pattern>"
-command-hcube-description: "Generate a hollow cube"
-command-hcube-usage: "//hcube <size> <pattern> [thickness]"
+command-cube-description: "立方体を生成します"
+command-cube-usage: "//cube <大きさ> <パターン>"
+command-hcube-description: "中空の立方体を生成します"
+command-hcube-usage: "//hcube <大きさ> <パターン> [厚さ]"
 
 
 command-commands-description: "全てのEasyEditのコマンド"
@@ -220,10 +223,13 @@ command-pastestates-description: "全ての既知のブロックステートを�
 command-pastestates-usage: "//pastestates"
 command-wand-description: "領域指定用の木の斧を手に入れる"
 command-wand-usage: "//wand"
+command-iteminfo-description: "手に持っているアイテムの情報を見る"
+command-iteminfo-usage: "//iteminfo"
 
-command-thru-description: "Teleport through blocks"
+
+command-thru-description: "ブロックを貫通してテレポートする"
 command-thru-usage: "//thru"
-command-unstuck-description: "Teleport to a safe location"
+command-unstuck-description: "安全な場所にテレポートする"
 command-unstuck-usage: "//unstuck"
-command-up-description: "Teleport up"
-command-up-usage: "//up <amount>"
+command-up-description: "上方向にテレポートする"
+command-up-usage: "//up <ブロック数>"
